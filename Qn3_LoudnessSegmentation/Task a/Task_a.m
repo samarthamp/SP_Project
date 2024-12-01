@@ -49,14 +49,16 @@ for i = 1:length(audioFiles)
     stdLoudness = std(sortedIntervals(:, 3));
 
     cutoff = averageLoudness + 0.5544*stdLoudness;
-    
+
     % Add a new column: 1 if loudness > average, else 0
     aboveAverage = sortedIntervals(:, 3) > cutoff;
     sortedIntervals = [sortedIntervals, aboveAverage];
-    
+
     % Display or save results
     disp('Start Time | End Time | Loudness | Is it Loud');
     disp(sortedIntervals);
+
+    disp("dsod");
 
     % Write loudness to a file
         outputFile = ['Audiofile_' num2str(i) '.txt'];
@@ -67,5 +69,5 @@ for i = 1:length(audioFiles)
         fclose(fileID);
 end
 
-disp(['Mean = ', num2str(mean(sortedIntervals(:, 3)))]);
-disp(['Standard Deviation = ', num2str(std(sortedIntervals(:, 3)))]);
+% disp(['Mean = ', num2str(mean(sortedIntervals(:, 3)))]);
+% disp(['Standard Deviation = ', num2str(std(sortedIntervals(:, 3)))]);

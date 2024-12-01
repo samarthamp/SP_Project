@@ -3,11 +3,12 @@ clearvars, clc, close all;
 % List of audio and text file names
 audioFiles = {'./audios/1.wav', './audios/2.wav', './audios/3.wav', './audios/4.wav',  './audios/5.wav',  './audios/6.wav',  './audios/7.mp3',  './audios/8.mp3', './audios/9.mp3'};
 
+% audioFiles = {'./audios/2.wav'};
 
 for k = 1:length(audioFiles)
 
     [audioData, fs] = audioread(audioFiles{k});
-
+    % If stereo, convert to mono
     if size(audioData, 2) > 1
         audioData = mean(audioData, 2);
     end
@@ -33,9 +34,9 @@ for k = 1:length(audioFiles)
         seg_peak(ix) = max(window);
     end
 
-    threshold = 0.05*mean(seg_energy);
-    mingap = 0.2;
-    mindur = 0.1;
+    threshold = 0.05*mean(seg_energy);  % determine whether a word or not
+    mingap = 0.2;   % minimum gap between two words. Equivalently, maximum gap between two syllables
+    mindur = 0.1;   % minimum duration of the word, i.e, shortest word duration
     starttimes = [0];
     endtimes = [0];
 
@@ -44,7 +45,7 @@ for k = 1:length(audioFiles)
         if (seg_energy(ix) > threshold && seg_energy(ix-1) <= threshold && abs(ix/fs - starttimes(length(starttimes)))>mingap)
             if (length(starttimes)==length(endtimes))
                 starttimes = [starttimes; ix/fs];
-            end
+            end 
         elseif (seg_energy(ix) < threshold && seg_energy(ix-1) >= threshold && abs(ix/fs - endtimes(length(endtimes)))>mingap)
             if (ix/fs - starttimes(length(starttimes)) > mindur)
                 if (length(endtimes)+1==length(starttimes))
@@ -98,14 +99,14 @@ for k = 1:length(audioFiles)
         matrix = sortrows(matrix, 3, 'descend');
         matrix
 
-    % figure;
-    %     subplot(2, 1, 1)
-    %         plot(linspace(0, N/fs, N), audioData);
-    %         title("Time domain Speech signal");
-    %     subplot(2, 1, 2)
-    %         plot(linspace(0, N/fs, N), seg_energy);
-    %         hold on;
-    %         plot(linspace(0, N/fs, N), threshold*ones(1, N));
-    %         hold off;
-    %         title("Energy of segment")
+    figure;
+        subplot(2, 1, 1)
+            plot(linspace(0, N/fs, N), audioData);
+            title("Time domain Speech signal of file " + num2str(k));
+        subplot(2, 1, 2)
+            plot(linspace(0, N/fs, N), seg_energy);
+            hold on;
+            plot(linspace(0, N/fs, N), threshold*ones(1, N));
+            hold off;
+            title("Energy of segment of file " + num2str(k));
 end
