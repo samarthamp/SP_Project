@@ -13,8 +13,8 @@ ecg3 = load('E3.mat').E3;
 axis = 0:1279;
 first_ten = axis+1;
 
-% X axis for 1001 point FFT analysis
-N = 1001;
+% X axis for 100001 point FFT analysis
+N = 100001;
 w_axis = -pi:2*pi/N:pi-2*pi/N;
 f_axis = w_axis*64/pi;
 
@@ -39,19 +39,19 @@ ylabel('Amplitude')
 % Frequency spectra of raw 
 figure;
 subplot(3,1,1);
-plot(f_axis,abs(fftshift(fft(ecg1,1001))));
+plot(f_axis,abs(fftshift(fft(ecg1,N))));
 title('Unfiltered spectrum of E1 signal');
 xlabel('Frequency(Hz)')
 ylabel('Magnitude')
 xlim([-64 64])
 subplot(3,1,2);
-plot(f_axis,abs(fftshift(fft(ecg2,1001))));
+plot(f_axis,abs(fftshift(fft(ecg2,N))));
 title('Unfiltered spectrum of E2 signal');
 xlabel('Frequency(Hz)')
 ylabel('Magnitude')
 xlim([-64 64])
 subplot(3,1,3);
-plot(f_axis,abs(fftshift(fft(ecg3,1001))));
+plot(f_axis,abs(fftshift(fft(ecg3,N))));
 title('Unfiltered spectrum of E3 signal');
 xlabel('Frequency(Hz)')
 ylabel('Magnitude')
@@ -76,7 +76,7 @@ ecg3 = filtfilt(c,d,ecg3);
 
 %IIR Notch filter to remove select 22Hz noise in E3
 fn = 22;
-Q = 50;
+Q = 450;
 [bn, an] = iirnotch(fn/(fs/2), fn/(fs/2)/Q);
 ecg3 = filter(bn,an,ecg3);
 
