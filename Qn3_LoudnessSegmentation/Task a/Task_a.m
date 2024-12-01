@@ -58,14 +58,13 @@ for i = 1:length(audioFiles)
     disp('Start Time | End Time | Loudness | Is it Loud');
     disp(sortedIntervals);
 
-    % Optionally, save to a file
-    outputFile = ['Audiofile_' num2str(i) '.txt'];
-    fileID = fopen(outputFile, 'w');
-    fprintf(fileID, 'Start Time  |    End Time   |    Loudness |  Is it Loud\n');
-    fprintf(fileID, '_______________________________________________________\n');
-    fprintf(fileID, '%f \t %f \t %f \t %d\n', sortedIntervals');
-    fprintf(fileID, '\n\n\n');
-    fclose(fileID);
+    % Write loudness to a file
+        outputFile = ['Audiofile_' num2str(i) '.txt'];
+        fileID = fopen(outputFile, 'w');
+        fprintf(fileID, 'Start Time  |    End Time   |    Loudness |  Is it Loud\n');
+        fprintf(fileID, '_______________________________________________________\n');
+        fprintf(fileID, '%f \t %f \t %f \t %d\n', sortedIntervals');
+        fclose(fileID);
 end
 
 disp(['Mean = ', num2str(mean(sortedIntervals(:, 3)))]);
