@@ -48,7 +48,7 @@ end
 function analyzeReference()
     % Analyze reference files
     for idx = 1:3
-        filename = sprintf('./Signals/Project_BirdRecognition/Reference/bird%d.wav', idx);
+        filename = sprintf('./GivenSignals/Project_BirdRecognition/Reference/bird%d.wav', idx);
         [~, fs] = audioread(filename);
 
         switch idx
@@ -66,11 +66,11 @@ function analyzeReference()
 end
 
 function analyzeTask()
-    files = dir('Signals/Project_BirdRecognition/Task/*.wav');
+    files = dir('./GivenSignals/Project_BirdRecognition/Task/*.wav');
     
     % Analyze each task file
     for idx = 1:length(files)
-        filename = fullfile('Signals/Project_BirdRecognition/Task', files(idx).name);
+        filename = fullfile('./GivenSignals/Project_BirdRecognition/Task', files(idx).name);
         [~, fs] = audioread(filename);
         ans = 0;
 

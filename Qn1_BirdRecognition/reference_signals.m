@@ -3,9 +3,9 @@
 % clc, clearvars, close all;
 
 % List of reference bird audio files
-audio_files = {'./Signals/Project_BirdRecognition/Reference/bird1.wav',...
-    './Signals/Project_BirdRecognition/Reference/bird2.wav',... 
-    './Signals/Project_BirdRecognition/Reference/bird3.wav'};
+audio_files = {'./GivenSignals/Project_BirdRecognition/Reference/bird1.wav',...
+    './GivenSignals/Project_BirdRecognition/Reference/bird2.wav',... 
+    './GivenSignals/Project_BirdRecognition/Reference/bird3.wav'};
 % audio_files = {'./Signals/Project_BirdRecognition/Reference/bird1.wav'};
 
 % Loop through each file
@@ -24,6 +24,14 @@ for i = 1:length(audio_files)
     fft_shifted = fftshift(fft_signal);
     
     magnitude = abs(fft_shifted);
+    
+    Y = magnitude/max(magnitude);
+    [peaks, locs] = findpeaks(Y, 'MinPeakHeight', 0.3, 'MinPeakDistance', 750);
+    peakFreqs = f(locs);
+   
+    mainPeakFreq = peakFreqs(peaks == max(peaks));
+    numSignificantPeaks = sum(peaks > 0.5);
+    freqSpread = std(peakFreqs);
     
     % Plot magnitude spectrum
     figure;
