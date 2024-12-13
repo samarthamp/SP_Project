@@ -1,4 +1,4 @@
-# SP_Project
+# Signal Processing: Course Project
 This project consists of 3 tasks/problem statements, namely, Bird Recognition, Heart Rate Estimation and Speech cum Loudness Detection
 
 ## Bird Recognition
@@ -18,4 +18,8 @@ You can refer to the documentation (in the form of slides, which also contains f
 - <insert references to filter design (anything you used in bird recog)>
 - <insert references to pan-tomkins algo>
 - [A-weighting and other frequency weighting methods](https://en.wikipedia.org/wiki/A-weighting)
-  
+
+### Team members 
+- MP Samartha (@samarthamp)
+- Srihari Padmanabhan (@sriharip114)
+- Kiruba Selvakumar (@Kiruba-Selvakumar)
