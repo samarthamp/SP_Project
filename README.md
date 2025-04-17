@@ -1,13 +1,18 @@
 # Signal Processing: Course Project
 This project consists of 3 tasks/problem statements, namely, Bird Recognition, Heart Rate Estimation and Speech cum Loudness Detection
 
+### Team members 
+- MP Samartha (@samarthamp)
+- Srihari Padmanabhan (@sriharip114)
+- Kiruba Selvakumar (@Kiruba-Selvakumar)
+
 ## Bird Recognition
 You are provided reference files of chirps of each bird in a sample set(i.e, consider 3 birds with reference files ref1.wav, ref2.wav and ref3.wav). You are tasked with determining all the birds whose chirps are present in a given audio file.
 
 ## Heart rate estimation
 Given a noisy ECG signal, you are tasked with filtering out the noisy components and estimate the heart rate of the patient.
 
-## Speech detection and Loudness detection
+## Speech and Loudness detection
 Given an audio sample, determine the start and end times of each word spoken in it. Determine which words are relatively emphasised (loud) to the other words.
 
 You can refer to the documentation (in the form of slides, which also contains few of our results) consisting of elaborate explanations of the solutions we came up with for each problem.
@@ -15,11 +20,4 @@ You can refer to the documentation (in the form of slides, which also contains f
 ### References
 - Digital Signal Processing, by  John G. Proakis
 - Signals and Systems - Oppenheim, Willsky, Nawab
-- <insert references to filter design (anything you used in bird recog)>
-- <insert references to pan-tomkins algo>
 - [A-weighting and other frequency weighting methods](https://en.wikipedia.org/wiki/A-weighting)
-
-### Team members 
-- MP Samartha (@samarthamp)
-- Srihari Padmanabhan (@sriharip114)
-- Kiruba Selvakumar (@Kiruba-Selvakumar)
